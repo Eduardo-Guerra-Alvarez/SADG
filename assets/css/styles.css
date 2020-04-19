@@ -1,0 +1,64 @@
+/* The side navigation menu */
+.sidenav {
+    font-family: 'Times New Roman';
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #29ffc6, #20e3b2, #0cebeb);
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+  
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color:#004d4d;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    background: linear-gradient(to right, #48b1bf, #06beb6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    color: blanchedalmond;
+    font-size: 25px;
+  }
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #main {
+    transition: margin-left .5s;
+    padding: 20px;
+  }
+
+  #btn-menu {
+    font-size:30px;
+    cursor:pointer;
+    color: #20e3b2;
+  }
+
+  #integrantes {
+      padding-top: 50%;
+      margin-left: 10%;
+      color: #006666;
+  }
+
+
+  footer {
+      padding-top: 100px;
+      margin: 25%;
+      color: #006666;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 20px;}
+    .sidenav a {font-size: 18px;}
+  }
+  
