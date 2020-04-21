@@ -5,8 +5,9 @@ CREATE TABLE empleados(
     nombre      VARCHAR(20),
     apellidos   VARCHAR(30),
     direccion   VARCHAR(50),
-    telefono    INT(10),
+    telefono    VARCHAR(10),
     correo      VARCHAR(70),
+    password    VARCHAR(30),
     salario     FLOAT,
     rol         VARCHAR(20),
     CONSTRAINT pk_empleados PRIMARY KEY(id)
@@ -18,7 +19,7 @@ CREATE TABLE clientes(
     apellidos   VARCHAR(30),
     direccion   VARCHAR(50),
     ciudad      VARCHAR(20),
-    telefono    INT,
+    telefono    VARCHAR(10),
     correo      VARCHAR(70),
     CONSTRAINT pk_clientes PRIMARY KEY(id)
 );
@@ -28,6 +29,6 @@ CREATE TABLE proyectos(
     nombre          VARCHAR(50),
     fecha_inicio    DATE,
     fecha_final     DATE,
-    coste           FLOAT
+    coste           FLOAT,
     CONSTRAINT pk_proyectos PRIMARY KEY(id)
 );

@@ -2,7 +2,7 @@
     <a href="#">About</a>
     <a href="#">Services</a>
     <a href="#">Clients</a>
-    <a href="#">Contact</a>
+    <a href="#">Contacto</a>
     <a href="#">Cerrar Sesión</a>
 
     <div id="integrantes">
@@ -14,4 +14,7 @@
     </div>
     <footer>Copyright &copy 2020</footer>
 </div>
-<script src="../assets/js/sidebar.js"></script>
+
+<!--Main principal-->
+<div id="main">
+    <span id="btn-menu" onclick="sidebar()">&#9776</span>

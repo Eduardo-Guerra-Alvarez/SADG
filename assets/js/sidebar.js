@@ -17,9 +17,4 @@ function sidebar(){
    }   
 }
 
-function closeBar() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-    // Icono de una X
-    document.getElementById('btn-menu').innerHTML = "&#9776";
-}
+
