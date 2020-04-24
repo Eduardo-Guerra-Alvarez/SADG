@@ -1,14 +1,14 @@
 <!-- Boton para abrir formulario -->
-<button type="button" class="btn btn-aqua btn-shadow" data-toggle="modal" data-target="#exampleModalCenter">
-  <span class="fas fa-user-plus"></span> Agregar Trabajador
+<button id="userId" type="button" class="btn btn-warning" data-toggle="modal" data-target="#editTrabajador">
+  <span class="fas fa-user-edit"></span>
 </button>
 
 <!-- Modal -->
-<div class="modal fade" data-toggle="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" data-toggle="modal" id="editTrabajador" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalCenterTitle">Agregar Trabajador</h3>
+        <h3 class="modal-title" id="edit"><?= $trabajador['nombre'] ?></h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -18,7 +18,7 @@
         <form action="../controllers/addTrabajador.php" method="POST">
                 <div class="form-groupl">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" class="form-control" autofocus required>
+                    <input type="text" name="nombre" class="form-control" required >
                 </div>
                 <div class="form-groupl">
                     <label for="apellidos">Apellidos</label>
@@ -54,8 +54,8 @@
                     </select>
                 </div>
                 <div class="form-groupl pt-3">
-                    <button type="submit" class="btn btn-aqua"><span class="fas fa-user-plus"></span> Agregar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><span class="fas fa-user-times"></span> Cancelar</button>
+                    <button type="submit" class="btn btn-aqua"><span class="fas fa-user-plus"></span> Actualizar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><span class="fas fa-user-times"></span> Cancelar </button>
                 </div>
         </form> <!--Fin formulario-->
       </div>

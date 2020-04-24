@@ -1,10 +1,18 @@
+<?php require_once '../controllers/conexion.php' ?>
+<!--Menu-->
 <div id="mySidenav" class="sidenav">
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contacto</a>
-    <a href="#">Cerrar Sesión</a>
-
+    <div id="user">
+        <span class="fas fa-user fa-6x"></span>
+        <h4> <?= strtoupper($_SESSION['user']['rol']) ?> </h4>
+    </div>
+    <hr>
+    <div>
+        <a href="#">Trabajadores</a>
+        <a href="#">Clientes</a>
+        <a href="#">Proyectos</a>
+        <a href="../controllers/logout.php"><span class="fas fa-sign-out-alt"></span> Salir</a>
+    </div>
+    <!--Integrantes del equipo-->
     <div id="integrantes">
         <h2>Integrantes: </h2>
         <p>Eduardo Guerra Alvarez</p>
@@ -12,6 +20,7 @@
         <p>José Luis Serna Serna</p>
         <p>Raúl de Jesús Simental Magaña</p>
     </div>
+    <!--Pie de pagina-->
     <footer>Copyright &copy 2020</footer>
 </div>
 

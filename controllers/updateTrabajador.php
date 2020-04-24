@@ -39,11 +39,12 @@
             // Cifrar contraseña
             $pass = password_hash($password, PASSWORD_BCRYPT, ['cost' => 4]);
 
-            $sql = "INSERT INTO trabajadores VALUES(NULL, '$nombre', '$apellidos', '$direccion', '$telefono',
-            '$correo', '$pass', $salario, '$rol');";
+            $sql = "UPDATE trabajadores SET = nombre = '$nombre', apellidos = '$apellidos',
+            direccion = '$direccion', telefono = '$telefono', correo ='$correo',
+            password = '$pass', salario = $salario, rol = '$rol');";
 
             if (mysqli_query($conn, $sql)) {
-                $_SESSION['aceptado'] = 'Trabajador registrado con exito';
+                $_SESSION['actualizado'] = 'Trabajador Actualizado con exito';
                 header('Location: ../views/trabajadoresIndex.php');
             } else {
                 $_SESSION['error'] = 'Fallo al guardar trabajador';
