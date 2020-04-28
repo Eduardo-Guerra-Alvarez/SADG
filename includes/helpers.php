@@ -9,5 +9,8 @@
         if (isset($_SESSION['errores'])) {
             unset($_SESSION['errores']);
         }
+        if (isset($_SESSION['actualizado'])) {
+            unset($_SESSION['actualizado']);
+        }
     }
 ?>

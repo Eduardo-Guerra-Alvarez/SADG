@@ -12,6 +12,7 @@
         <a href="#">Proyectos</a>
         <a href="../controllers/logout.php"><span class="fas fa-sign-out-alt"></span> Salir</a>
     </div>
+    <hr>
     <!--Integrantes del equipo-->
     <div id="integrantes">
         <h2>Integrantes: </h2>

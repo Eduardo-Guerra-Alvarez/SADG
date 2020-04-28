@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-groupl">
                     <label for="telefono">Telefono</label>
-                    <input type="text" name="telefono" class="form-control" required>
+                    <input type="text" name="telefono" class="form-control" required maxlength="10">
                 </div>
                 <div class="form-groupl">
                     <label for="correo">Correo</label>

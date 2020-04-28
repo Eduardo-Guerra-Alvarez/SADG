@@ -2,7 +2,6 @@
 <?php require_once '../includes/sidebar.php' ?>
 <?php require_once '../controllers/select.php' ?>
 
-
 <div class="container">
     <div class="row justify-content-center">
         <h1>Trabajadores</h1>
@@ -19,10 +18,10 @@
             <?= $_SESSION['error']; ?>
         </div>
     </div>
-    <?php elseif (isset($_SESSION['alerta'])) : ?>
+    <?php elseif (isset($_SESSION['actualizado'])) : ?>
     <div class="toast alertas" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
         <div class="toast-body bg-warning">
-            <?= $_SESSION['alerta']; ?>
+            <?= $_SESSION['actualizado']; ?>
         </div>
     </div>
     <?php endif; ?>
@@ -35,15 +34,15 @@
         <table class="table table-hover">
             <thead class="table-thead">
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Direccion</th>
-                    <th>Teléfono</th>
-                    <th>Correo</th>
-                    <th>Salario</th>
-                    <th>Rol</th>
-                    <th>Opciones</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Salario</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Opciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,7 +51,7 @@
                 while ($trabajador = mysqli_fetch_assoc($trabajadores)) :
             ?>
                 <tr>
-                    <td><?= $trabajador['id']; ?></td>
+                    <th scope="row"><?= $trabajador['id']; ?></th>
                     <td><?= $trabajador['nombre']; ?></td>
                     <td><?= $trabajador['apellidos']; ?></td>
                     <td><?= $trabajador['direccion']; ?></td>
@@ -67,7 +66,6 @@
                         </div>
                     </td>
                 </tr>
-
             <?php endwhile; ?>
             </tbody>
         </table>

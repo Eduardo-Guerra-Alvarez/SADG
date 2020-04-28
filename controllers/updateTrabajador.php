@@ -2,6 +2,7 @@
     require_once './conexion.php';
     // Se valida que si exista el POST
     if (isset($_POST)) {
+        $id = isset($_POST['id']) ? mysqli_real_escape_string($conn, $_POST['id']) : false;
         $nombre = isset($_POST['nombre']) ? mysqli_real_escape_string($conn, $_POST['nombre']) : false;
         $apellidos = isset($_POST['apellidos']) ? mysqli_real_escape_string($conn, $_POST['apellidos']) : false;
         $direccion = isset($_POST['direccion']) ? mysqli_real_escape_string($conn, $_POST['direccion']) : false;
@@ -28,26 +29,30 @@
         if (empty($correo) || !filter_var($correo, FILTER_VALIDATE_EMAIL)) {
             $errores['correo'] = 'Correo invalido';
         }
-        if (empty($password)) {
-            $errores['password'] = 'Contraseña invalida';
-        }
         if (empty($salario)) {
             $errores['salario'] = 'Salario invalido';
         }
 
         if (count($errores) == 0) {
-            // Cifrar contraseña
-            $pass = password_hash($password, PASSWORD_BCRYPT, ['cost' => 4]);
 
-            $sql = "UPDATE trabajadores SET = nombre = '$nombre', apellidos = '$apellidos',
-            direccion = '$direccion', telefono = '$telefono', correo ='$correo',
-            password = '$pass', salario = $salario, rol = '$rol');";
+            if (empty($password)) {
+                $sql = "UPDATE trabajadores SET nombre = '$nombre', apellidos = '$apellidos',
+                direccion = '$direccion', telefono = '$telefono', correo ='$correo',
+                salario = $salario, rol = '$rol' WHERE id = '$id';";
+            } else {
+                // Cifrar contraseña
+                $pass = password_hash($password, PASSWORD_BCRYPT, ['cost' => 4]);
+
+                $sql = "UPDATE trabajadores SET nombre = '$nombre', apellidos = '$apellidos',
+                direccion = '$direccion', telefono = '$telefono', correo ='$correo',
+                password = '$pass', salario = $salario, rol = '$rol' WHERE id = '$id';";
+            }
 
             if (mysqli_query($conn, $sql)) {
                 $_SESSION['actualizado'] = 'Trabajador Actualizado con exito';
                 header('Location: ../views/trabajadoresIndex.php');
             } else {
-                $_SESSION['error'] = 'Fallo al guardar trabajador';
+                $_SESSION['error'] = 'Fallo al Actualizar trabajador';
                 header('Location: ../views/trabajadoresIndex.php');
             }
 
