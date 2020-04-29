@@ -6,7 +6,16 @@
         if($trabajadores) {
             $result = $trabajadores;
         }
-        
+        return $result;
+    }
+
+    function select_Clientes($conn) {
+        $sql = "SELECT * FROM clientes ORDER BY id ASC;";
+        $clientes = mysqli_query($conn, $sql);
+        $result = array();
+        if($clientes) {
+            $result = $clientes;
+        }
         return $result;
     }
 ?>

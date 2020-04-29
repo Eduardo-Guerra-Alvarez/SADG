@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-groupl">
                     <label for="correo">Correo</label>
-                    <input type="email" name="correo" class="form-control" required>
+                    <input type="email" name="correo" class="form-control" required pattern="^[a-zA-Z0-9._-]+@[a-zA-Z]+(\.[a-z]{2,4}){1,3}$">
                 </div>
                 <div class="form-groupl">
                     <label for="password">Contraseña</label>

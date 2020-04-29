@@ -49,7 +49,6 @@
                 $_SESSION['error'] = 'Fallo al guardar trabajador';
                 header('Location: ../views/trabajadoresIndex.php');
             }
-
         } else {
             $_SESSION['errores'] = $errores;
         }

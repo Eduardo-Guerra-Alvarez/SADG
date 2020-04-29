@@ -7,24 +7,24 @@
     z-index: 1; /* Stay on top */
     top: 0;
     left: 0;
-    background: #06beb6;
+    background: #262626;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   }
   
   /* The navigation menu links */
-  .sidenav a {
+  #enlace a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 20px;
-    color:#004d4d;
+    color:#666666;
     display: block;
     transition: 0.3s;
   }
   
   /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
+  #enlace a:hover {
     background: linear-gradient(to right, #48b1bf, #06beb6); 
     color: blanchedalmond;
     font-size: 25px;
@@ -32,6 +32,7 @@
 
   #user {
     text-align: center;
+    color: #FFFFFF;
   }
   
   /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
@@ -43,18 +44,25 @@
   #btn-menu {
     font-size:30px;
     cursor: pointer;
-    color: #20e3b2;
+    color: #4db6ac;
   }
 
   #integrantes {
-    padding-top: 20%;
-    text-align: center;
+    display: block;
+    top: 3px;
+    left: 5px;
+    position: absolute;
     color: #006666;
   }
 
+  #integrantes a{
+    text-decoration: none;
+    color: #79d2b5;
+  }
+
+
   #index {
     background: linear-gradient(to bottom, #4ac29a,#003333);
-    background-color: #003333;
   }
 
   #logo {

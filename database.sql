@@ -10,7 +10,7 @@ CREATE TABLE trabajadores(
     password    VARCHAR(255) NOT NULL,
     salario     FLOAT NOT NULL,
     rol         VARCHAR(20) NOT NULL,
-    CONSTRAINT pk_trabajadores PRIMARY KEY(id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE clientes(
@@ -21,14 +21,16 @@ CREATE TABLE clientes(
     ciudad      VARCHAR(20) NOT NULL,
     telefono    VARCHAR(10),
     correo      VARCHAR(70),
-    CONSTRAINT pk_clientes PRIMARY KEY(id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE proyectos(
-    id              INT auto_increment,
+    id              INT auto_increment
+    id_cliente      INT,
     nombre          VARCHAR(50) NOT NULL,
     fecha_inicio    DATE NOT NULL,
     fecha_final     DATE,
     coste           FLOAT NOT NULL,
-    CONSTRAINT pk_proyectos PRIMARY KEY(id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_cliente) REFERENCES clientes (id)
 );

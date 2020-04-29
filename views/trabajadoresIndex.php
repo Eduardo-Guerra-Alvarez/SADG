@@ -1,7 +1,6 @@
 <?php require_once '../includes/head.php' ?>
 <?php require_once '../includes/sidebar.php' ?>
 <?php require_once '../controllers/select.php' ?>
-
 <div class="container">
     <div class="row justify-content-center">
         <h1>Trabajadores</h1>
@@ -62,7 +61,7 @@
                     <td>
                         <div class="btn-group btn-group-sm"" role="group" aria-label="Basic example">
                             <?php require './trabajadoresEdit.php' ?>
-                            <a href="../controllers/deleteTrabajador.php?id=<?= $trabajador['id']; ?>" class="btn btn-danger"><span class="fas fa-user-minus"></span></a>
+                            <a href="../controllers/deleteTrabajador.php?id=<?= $trabajador['id']; ?>" class="btn btn-danger <?= ($_SESSION['user']['id'] == $trabajador['id']) ? "disabled" : '' ?>"><span class="fas fa-user-minus"></span></a>
                         </div>
                     </td>
                 </tr>

@@ -6,21 +6,13 @@
         <h4> <?= strtoupper($_SESSION['user']['rol']) ?> </h4>
     </div>
     <hr>
-    <div>
-        <a href="#">Trabajadores</a>
-        <a href="#">Clientes</a>
-        <a href="#">Proyectos</a>
+    <div id="enlace">
+        <a href="./trabajadoresIndex.php">Trabajadores</a>
+        <a href="./clientesIndex.php">Clientes</a>
+        <a href="./proyectosIndex.php">Proyectos</a>
         <a href="../controllers/logout.php"><span class="fas fa-sign-out-alt"></span> Salir</a>
     </div>
     <hr>
-    <!--Integrantes del equipo-->
-    <div id="integrantes">
-        <h2>Integrantes: </h2>
-        <p>Eduardo Guerra Alvarez</p>
-        <p>Luis Armando Prado Nuñez</p>
-        <p>José Luis Serna Serna</p>
-        <p>Raúl de Jesús Simental Magaña</p>
-    </div>
     <!--Pie de pagina-->
     <footer>Copyright &copy 2020</footer>
 </div>
