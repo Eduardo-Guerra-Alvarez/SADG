@@ -30,44 +30,47 @@
     </div>
     <div class="row">
         <!--Tabla que mostrara los trabajadores-->
-        <table class="table table-hover">
-            <thead class="table-thead">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellidos</th>
-                    <th scope="col">Direccion</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Salario</th>
-                    <th scope="col">Rol</th>
-                    <th scope="col">Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php 
-                $trabajadores = select_Trabajadores($conn);
-                while ($trabajador = mysqli_fetch_assoc($trabajadores)) :
-            ?>
-                <tr>
-                    <th scope="row"><?= $trabajador['id']; ?></th>
-                    <td><?= $trabajador['nombre']; ?></td>
-                    <td><?= $trabajador['apellidos']; ?></td>
-                    <td><?= $trabajador['direccion']; ?></td>
-                    <td><?= $trabajador['telefono']; ?></td>
-                    <td><?= $trabajador['correo']; ?></td>
-                    <td><?= $trabajador['salario']; ?></td>
-                    <td><?= strtoupper($trabajador['rol']); ?></td>
-                    <td>
-                        <div class="btn-group btn-group-sm"" role="group" aria-label="Basic example">
-                            <?php require './trabajadoresEdit.php' ?>
-                            <a href="../controllers/deleteTrabajador.php?id=<?= $trabajador['id']; ?>" class="btn btn-danger <?= ($_SESSION['user']['id'] == $trabajador['id']) ? "disabled" : '' ?>"><span class="fas fa-user-minus"></span></a>
-                        </div>
-                    </td>
-                </tr>
-            <?php endwhile; ?>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-thead">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Salario</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                    $trabajadores = select_Trabajadores($conn);
+                    while ($trabajador = mysqli_fetch_assoc($trabajadores)) :
+                ?>
+                    <tr>
+                        <th scope="row"><?= $trabajador['id']; ?></th>
+                        <td><?= $trabajador['nombre']; ?></td>
+                        <td><?= $trabajador['apellidos']; ?></td>
+                        <td><?= $trabajador['direccion']; ?></td>
+                        <td><?= $trabajador['telefono']; ?></td>
+                        <td><?= $trabajador['correo']; ?></td>
+                        <td><?= $trabajador['salario']; ?></td>
+                        <td><?= mb_strtoupper($trabajador['rol']); ?></td>
+                        <td>
+                            <div class="btn-group btn-group-sm"" role="group" aria-label="Basic example">
+                                <?php require './trabajadoresEdit.php' ?>
+                                <a href="../controllers/deleteTrabajador.php?id=<?= $trabajador['id']; ?>" class="btn btn-danger <?= ($_SESSION['user']['id'] == $trabajador['id']) ? "disabled" : '' ?>"><span class="fas fa-user-minus"></span></a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+        
     </div>
 </div>
 <?= deleteAlert(); ?>

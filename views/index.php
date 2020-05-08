@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Enlaces para usar style.css-->
     <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="icon" href="../assets/images/icon.ico">
     <!--Nombre de etiqueta-->
     <title>Diseño Grafico</title>
 </head>

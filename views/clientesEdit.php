@@ -1,10 +1,10 @@
 <!-- Boton para abrir formulario -->
-<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#<?= str_replace(' ', '',$cliente['nombre'].$cliente['apellidos']) ?>">
+<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#E<?= str_replace(' ', '',$cliente['nombre'].$cliente['apellidos']) ?>">
   <span class="fas fa-user-edit"></span>
 </button>
 
 <!-- Modal -->
-<div class="modal fade" data-toggle="modal" id="<?= str_replace(' ', '',$cliente['nombre'].$cliente['apellidos']) ?>" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<div class="modal fade" data-toggle="modal" id="E<?= str_replace(' ', '',$cliente['nombre'].$cliente['apellidos']) ?>" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -14,7 +14,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <!--Formulario de Trabajadores-->
+        <!--Formulario de Clientes-->
         <form action="../controllers/updateTrabajador.php" method="POST">
                 <input type="hidden" name="id" value="<?= $cliente['id'] ?>">
                 <div class="form-groupl">

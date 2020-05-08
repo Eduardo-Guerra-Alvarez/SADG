@@ -16,6 +16,8 @@
     <script src="https://kit.fontawesome.com/8eaed8659a.js" crossorigin="anonymous"></script>
     <!--Enlaces para usar style.css-->
     <link rel="stylesheet" href="../assets/css/styles.css">
+    <!--Icono en html-->
+    <link rel="icon" href="../assets/images/icon.ico">
     <!--Nombre de etiqueta-->
     <title>Diseño Grafico</title>
 </head>

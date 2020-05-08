@@ -14,7 +14,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <!--Formulario de Trabajadores-->
+        <!--Formulario de Clientes-->
         <form action="../controllers/addCliente.php" method="POST">
                 <div class="form-groupl">
                     <label for="nombre">Nombre</label>

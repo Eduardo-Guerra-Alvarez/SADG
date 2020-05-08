@@ -3,7 +3,7 @@
 <?php require_once '../controllers/select.php' ?>
 <div class="container">
     <div class="row justify-content-center">
-        <h1>Trabajadores</h1>
+        <h1>Proyectos</h1>
     </div>
     <?php if (isset($_SESSION['aceptado'])) : ?>
     <div class="toast alertas" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
@@ -26,41 +26,47 @@
     <?php endif; ?>
     <div class="row justify-content-end mb-2">
         <!--Se incluye el formulario-->
-        <?php require_once './trabajadoresForm.php' ?>
     </div>
     <div class="row">
         <!--Tabla que mostrara los trabajadores-->
-        <table class="table table-hover">
-            <thead class="table-thead">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Fecha de Inicio</th>
-                    <th scope="col">Fecha Final</th>
-                    <th scope="col">Costo</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php 
-                $obras = select_Trabajadores($conn);
-                while ($obra = mysqli_fetch_assoc($obras)) :
-            ?>
-                <tr>
-                    <th scope="row"><?= $obra['id']; ?></th>
-                    <td><?= $obra['nombre']; ?></td>
-                    <td><?= $obra['fecha_inicio']; ?></td>
-                    <td><?= $obra['fecha_final']; ?></td>
-                    <td><?= $obra['coste']; ?></td>
-                    <td>
-                        <div class="btn-group btn-group-sm"" role="group" aria-label="Basic example">
-                            <?php require './obrasEdit.php' ?>
-                            <a href="../controllers/deleteObra.php?id=<?= $obra['id']; ?>" class="btn btn-danger"><span class="fas fa-user-minus"></span></a>
-                        </div>
-                    </td>
-                </tr>
-            <?php endwhile; ?>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-thead">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Fecha de Inicio</th>
+                        <th scope="col">Fecha Final</th>
+                        <th scope="col">Costo</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                    $proyectos = select_Proyectos($conn);
+                    while ($proyecto = mysqli_fetch_assoc($proyectos)) :
+                ?>
+                    <tr>
+                        <th scope="row"><a href="./proyectosShow.php?id=<?= $proyecto['id']; ?>" class="btn btn-outline-dark btn-sm"><?= $proyecto['id']; ?></a></th>
+                        <td><?= $proyecto['nombre']; ?></td>
+                        <td><?= $proyecto['fecha_inicio']; ?></td>
+                        <td><?= $proyecto['fecha_final']; ?></td>
+                        <td><?= $proyecto['coste']; ?></td>
+                        <td><?= $proyecto['cliente']; ?></td>
+                        <td class="text-primary"><?= $proyecto['estatus']; ?></td>
+                        <td class="">
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                <?php require './proyectosEdit.php' ?>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+        
     </div>
 </div>
 <?= deleteAlert(); ?>
