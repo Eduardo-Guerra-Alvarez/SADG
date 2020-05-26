@@ -15,14 +15,15 @@
       </div>
       <div class="modal-body">
         <!--Formulario de Proyectos-->
-        <form action="../controllers/addProyecto.php" method="POST">
+        <form action="../controllers/updateProyecto.php" method="POST">
+                <input type="hidden" name="id" value="<?= $proyecto['id'] ?>">
                 <div class="form-groupl">
                     <label for="nombre">Nombre</label>
                     <input type="text" name="nombre" class="form-control" autofocus required value="<?= $proyecto['nombre'] ?>">
                 </div>
                 <div class="form-groupl">
                     <label for="fecha_inicio">Fecha de Inicio</label>
-                    <input type="date" name="fecha_inicio" class="form-control" required min="<?php echo date('Y/m/d')?>" value="<?= $proyecto['fecha_inicio'] ?>">
+                    <input type="date" name="fecha_inicio" class="form-control" required min="<?= $proyecto['fecha_inicio'] ?>" value="<?= $proyecto['fecha_inicio'] ?>">
                 </div>
                 <div class="form-groupl">
                     <label for="fecha_final">Fecha Final</label>

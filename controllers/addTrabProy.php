@@ -24,9 +24,14 @@
                 }
             }
             if ($falla == false) {
+                $sql = "UPDATE proyectos SET estatus = 'Propuesta' WHERE id = '$proyecto';";
+                $result = mysqli_query($conn, $sql);
                 $_SESSION['aceptado'] = 'Trabajador seleccionados con exito';
                 header("Location: ../views/proyectosShow.php?id=$proyecto");
             }
+        } else {
+            $_SESSION['error'] = 'No hay trabajadores por seleccionar';
+                header("Location: ../views/proyectosShow.php?id=$proyecto");
         }
         header("Location: ../views/proyectosShow.php?id=$proyecto");
     }

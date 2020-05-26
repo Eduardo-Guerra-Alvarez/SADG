@@ -15,7 +15,7 @@
       </div>
       <div class="modal-body">
         <!--Formulario de Clientes-->
-        <form action="../controllers/updateTrabajador.php" method="POST">
+        <form action="../controllers/updateCliente.php" method="POST">
                 <input type="hidden" name="id" value="<?= $cliente['id'] ?>">
                 <div class="form-groupl">
                     <label for="nombre">Nombre</label>
@@ -31,11 +31,15 @@
                 </div>
                 <div class="form-groupl">
                     <label for="cuidad">Ciudad</label>
-                    <input type="text" name="ciudad" class="form-control" required maxlength="10" value="<?= $cliente['ciudad'] ?>">
+                    <input type="text" name="ciudad" class="form-control" required value="<?= $cliente['ciudad'] ?>">
+                </div>
+                <div class="form-groupl">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" name="telefono" class="form-control" required maxlength="10" value="<?= $cliente['telefono'] ?>">
                 </div>
                 <div class="form-groupl">
                     <label for="correo">Correo</label>
-                    <input type="email" name="correo" class="form-control" required value="<?= $cliente['correo'] ?>">
+                    <input type="email" name="correo" class="form-control" required value="<?= $cliente['correo'] ?>" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z]+(\.[a-z]{2,4}){1,3}$">
                 </div>
                 <div class="form-groupl pt-3">
                     <button type="submit" class="btn btn-aqua"><span class="fas fa-user-plus"></span> Actualizar</button>

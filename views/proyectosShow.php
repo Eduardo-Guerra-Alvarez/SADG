@@ -77,6 +77,7 @@
             </div>
         </div>
     </div>
+    <p>Descripción: <?= $proyecto['descripcion']?> </p>
     <hr>
     <div class="row">
         <div class="col">
@@ -91,11 +92,22 @@
                                 <?php 
                                     $trabajadores = select_Trabajadores($conn);
                                     while ($trabajador = mysqli_fetch_assoc($trabajadores)) :
+                                        $result = true;
                                         if ($trabajador['rol'] == 'diseñador') :
+                                            $trabajadores_proy = select_ProyTrab($conn, $_GET['id']);
+                                            while($trabajadorp = mysqli_fetch_assoc($trabajadores_proy)) :
+                                                if ($trabajador['id'] == $trabajadorp['id']) {
+                                                    $result = false;
+                                                }
+                                            endwhile;
+                                            if ($result) :
                                 ?>
-                                <option value="<?= $trabajador['id'] ?>"><?= $trabajador['nombre'].' '.$trabajador['apellidos'] ?></option>
-                                        <?php endif; ?>
-                                <?php endwhile; ?>
+                                                <option value="<?= $trabajador['id'] ?>"><?= $trabajador['nombre'].' '.$trabajador['apellidos'] ?></option>
+                                <?php 
+                                            endif;
+                                        endif; 
+                                    endwhile; 
+                                ?>
                             </select>
                             <input type="hidden" name="id_proyecto" value="<?= $_GET['id'] ?>">
                         </div>

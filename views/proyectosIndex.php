@@ -51,8 +51,8 @@
                     <tr>
                         <th scope="row"><a href="./proyectosShow.php?id=<?= $proyecto['id']; ?>" class="btn btn-outline-dark btn-sm"><?= $proyecto['id']; ?></a></th>
                         <td><?= $proyecto['nombre']; ?></td>
-                        <td><?= $proyecto['fecha_inicio']; ?></td>
-                        <td><?= $proyecto['fecha_final']; ?></td>
+                        <td><?= date("d-m-Y", strtotime($proyecto['fecha_inicio'])); ?></td>
+                        <td><?= date("d-m-Y", strtotime($proyecto['fecha_final'])); ?></td>
                         <td><?= $proyecto['coste']; ?></td>
                         <td><?= $proyecto['cliente']; ?></td>
                         <td class="text-primary"><?= $proyecto['estatus']; ?></td>
@@ -70,5 +70,4 @@
     </div>
 </div>
 <?= deleteAlert(); ?>
-
 <?php require_once '../includes/footer.php' ?>

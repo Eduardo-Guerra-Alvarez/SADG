@@ -22,11 +22,11 @@
                 </div>
                 <div class="form-groupl">
                     <label for="fecha_inicio">Fecha de Inicio</label>
-                    <input type="date" name="fecha_inicio" class="form-control" required min="<?php echo date('Y/m/d')?>">
+                    <input type="date" name="fecha_inicio" class="form-control" required value="<?= date('Y-m-d'); ?>" min="<?= date('Y-m-d'); ?>">
                 </div>
                 <div class="form-groupl">
                     <label for="fecha_final">Fecha Final</label>
-                    <input type="date" name="fecha_final" class="form-control" required min="min=<?php $hoy=date("Y-m-d"); echo $hoy;?>">
+                    <input type="date" name="fecha_final" class="form-control" required value="<?= date('Y-m-d'); ?>" min="<?= date('Y-m-d'); ?>">
                 </div>
                 <div class="form-groupl">
                     <label for="coste">Costo</label>

@@ -11,6 +11,7 @@
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    box-shadow: 10px 0px 20px gray;
   }
   
   /* The navigation menu links */
@@ -149,3 +150,10 @@
     height: 100px;
     width: 100%;
   }
+
+
+  .card {
+    box-shadow: 10px 10px 20px  rgba(0,0,0,0.4), inset 1px 1px 20px rgba(0,0,0,0.2);
+  }
+
+  
