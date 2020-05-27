@@ -43,3 +43,14 @@ CREATE TABLE proyecto_trabajador(
     FOREIGN KEY (id_trabajador) REFERENCES trabajadores (id),
     FOREIGN KEY (id_proyecto) REFERENCES proyectos (id)
 );
+
+CREATE TABLE propuestas(
+    id              INT auto_increment,
+    id_proyecto     INT,
+    id_trabajador   INT,
+    nombre          VARCHAR(100) NOT NULL,
+    estatus         VARCHAR(30) DEFAULT 'Enviado',
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_proyecto) REFERENCES proyectos (id),
+    FOREIGN KEY (id_trabajador) REFERENCES trabajadores (id)
+);

@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if ($_SESSION['user']['rol'] != 'administrador') {
+        header('Location: index.php');
+    }
+?>
 <?php require_once '../includes/head.php' ?>
 <?php require_once '../includes/sidebar.php' ?>
 <?php require_once '../controllers/select.php' ?>
@@ -25,12 +31,10 @@
         </div>
     </div>
     <?php endif; ?>
-    <?php if ($_SESSION['user']['rol'] == 'administrador') : ?>
     <div class="row justify-content-end mb-2">
         <!--Se incluye el formulario-->
         <?php require_once './trabajadoresForm.php' ?>
     </div>
-    <?php endif; ?>
     <div class="row">
         <!--Tabla que mostrara los trabajadores-->
         <div class="table-responsive">
@@ -65,7 +69,7 @@
                                 <td>
                                     <div class="btn-group btn-group-sm"" role="group" aria-label="Basic example">
                                         <?php require './trabajadoresEdit.php' ?>
-                                        <a href="../controllers/deleteTrabajador.php?id=<?= $trabajador['id']; ?>" class="btn btn-danger <?= ($_SESSION['user']['id'] == $trabajador['id']) ? "disabled" : '' ?>"><span class="fas fa-user-minus"></span></a>
+                                        <a href="../controllers/deleteTrabajador.php?id=<?= $trabajador['id']; ?>" class="btn btn-danger"><span class="fas fa-user-minus"></span></a>
                                     </div>
                                 </td>  
                             </tr>

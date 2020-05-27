@@ -20,8 +20,16 @@
     }
 
     function select_Proyectos($conn) {
-        $sql = "SELECT p.id, p.nombre, p.fecha_inicio, p.fecha_final, p.coste, p.estatus, p.descripcion,CONCAT(c.nombre, ' ', c.apellidos) AS cliente FROM proyectos AS p LEFT JOIN clientes AS c ON p.id_cliente = c.id;";
-        $proyectos = mysqli_query($conn, $sql);
+        if ($_SESSION['user']['rol'] != 'diseñador') {
+            $sql = "SELECT p.id, p.nombre, p.fecha_inicio, p.fecha_final, p.coste, p.estatus, p.descripcion,CONCAT(c.nombre, ' ', c.apellidos) AS cliente FROM proyectos AS p LEFT JOIN clientes AS c ON p.id_cliente = c.id;";
+            $proyectos = mysqli_query($conn, $sql);
+        } else {
+            $trab = $_SESSION['user']['id'];
+            $sql = "SELECT p.id, p.nombre, p.fecha_inicio, p.fecha_final, p.coste, p.estatus, p.descripcion,CONCAT(c.nombre, ' ', c.apellidos) AS cliente FROM proyecto_trabajador AS pt LEFT JOIN proyectos AS p ON pt.id_proyecto = p.id
+            LEFT JOIN clientes AS c ON p.id_cliente = c.id WHERE pt.id_trabajador = '$trab';";
+
+            $proyectos = mysqli_query($conn, $sql);
+        }
         $result = array();
         if($proyectos) {
             $result = $proyectos;
@@ -48,6 +56,26 @@
         if($trabajadores) {
             $result = $trabajadores;
         }
-        return $trabajadores;
+        return $result;
+    }
+
+    function select_Propuestas($conn, $id) {
+
+        if ($_SESSION['user']['rol'] == 'gestor') {
+            $sql = "SELECT p.nombre AS propuesta, CONCAT(t.nombre, ' ', t.apellidos) AS trabajador FROM propuestas AS p INNER JOIN trabajadores AS t ON p.id_trabajador = t.id WHERE p.id_proyecto = '$id'";
+
+            $propuesta = mysqli_query($conn, $sql);
+        } else if ($_SESSION['user']['rol'] == 'diseñador') {
+            $id_trab = $_SESSION['user']['id'];
+            $sql = "SELECT p.nombre AS propuesta, CONCAT(t.nombre, ' ', t.apellidos) AS trabajador FROM propuestas AS p INNER JOIN trabajadores AS t ON p.id_trabajador = t.id WHERE p.id_proyecto = '$id' AND p.id_trabajador = '$id_trab'";
+
+            $propuesta = mysqli_query($conn, $sql);
+        }
+        
+        $result = array();
+        if ($propuesta) {
+            $result = $propuesta;
+        }
+        return $result;
     }
 ?>

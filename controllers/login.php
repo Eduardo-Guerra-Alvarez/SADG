@@ -12,7 +12,13 @@
 
             if (password_verify($password ,$user['password'])) {
                 $_SESSION['user'] = $user;
-                header('Location: ../views/trabajadoresIndex.php');
+                if ($user['rol'] == 'administrador') {
+                    header('Location: ../views/trabajadoresIndex.php');
+                } else if ($user['rol'] == 'secretaria') {
+                    header('Location: ../views/clientesIndex.php');
+                } else if ($user['rol'] == 'diseñador' || $user['rol'] == 'gestor') {
+                    header('Location: ../views/proyectosIndex.php');
+                }
             } else {
                 $_SESSION['error'] = 'Contraseña incorrecta';
                 header('Location: ../views/index.php');

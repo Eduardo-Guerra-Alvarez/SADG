@@ -83,6 +83,10 @@
     height: 100vh;
   }
 
+  #propuesta {
+    height: 150px;
+  }
+
   footer {
     margin-left: 30%;
     bottom: 0;

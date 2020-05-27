@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header('Location: index.php');
+    }
+?>
 <?php require_once '../includes/head.php' ?>
 <?php require_once '../includes/sidebar.php' ?>
 <?php require_once '../controllers/select.php' ?>
@@ -40,7 +46,9 @@
                         <th scope="col">Costo</th>
                         <th scope="col">Cliente</th>
                         <th scope="col">Estatus</th>
+                        <?php if($_SESSION['user']['rol'] == 'gestor') : ?>
                         <th scope="col">Opciones</th>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,11 +64,11 @@
                         <td><?= $proyecto['coste']; ?></td>
                         <td><?= $proyecto['cliente']; ?></td>
                         <td class="text-primary"><?= $proyecto['estatus']; ?></td>
-                        <td class="">
-                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                <?php require './proyectosEdit.php' ?>
-                            </div>
+                        <?php if($_SESSION['user']['rol'] == 'gestor') : ?>
+                        <td>
+                             <?php require './proyectosEdit.php' ?>
                         </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endwhile; ?>
                 </tbody>

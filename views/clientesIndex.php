@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if ($_SESSION['user']['rol'] != 'secretaria' && $_SESSION['user']['rol'] != 'administrador') {
+        header('Location: index.php');
+    }
+?>
 <?php require_once '../includes/head.php' ?>
 <?php require_once '../includes/sidebar.php' ?>
 <?php require_once '../controllers/select.php' ?>
@@ -24,10 +30,12 @@
         </div>
     </div>
     <?php endif; ?>
+    <?php if($_SESSION['user']['rol'] == 'secretaria') : ?>
     <div class="row justify-content-end mb-2">
         <!--Se incluye el formulario-->
         <?php require_once './clientesForm.php' ?>
     </div>
+    <?php endif; ?>
     <div class="row">
         <!--Tabla que mostrara los trabajadores-->
         <div class="table-responsive">
@@ -40,7 +48,9 @@
                         <th scope="col">Direccion</th>
                         <th scope="col">Teléfono</th>
                         <th scope="col">Correo</th>
+                        <?php if($_SESSION['user']['rol'] == 'secretaria') : ?>
                         <th scope="col">Opciones</th>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,12 +65,14 @@
                         <td><?= $cliente['direccion']; ?></td>
                         <td><?= $cliente['telefono']; ?></td>
                         <td><?= $cliente['correo']; ?></td>
+                        <?php if($_SESSION['user']['rol'] == 'secretaria') : ?>
                         <td>
                             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                 <?php require './clientesEdit.php' ?>
                                 <?php require './proyectosForm.php' ?>
                             </div>
                         </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endwhile; ?>
                 </tbody>

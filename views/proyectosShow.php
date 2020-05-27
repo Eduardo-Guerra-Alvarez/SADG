@@ -38,7 +38,7 @@
                             <th scope="col">Costo</th>
                             <th scope="col">Cliente</th>
                             <th scope="col">Estatus</th>
-                            <th scope="col">Trabajador</th>
+                            <th scope="col">Trabajadores</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,21 +55,23 @@
                             <td><?= $proyecto['cliente']; ?></td>
                             <td class="text-primary"><?= $proyecto['estatus']; ?></td>
                             <td>
-                            <div class="box overflow-auto">
-                                <table class="table table-hover table-borderless">
-                                    <tbody>
-                                    <?php 
-                                        $trabajadores_proy = select_ProyTrab($conn, $_GET['id']);
-                                        while($trabajador = mysqli_fetch_assoc($trabajadores_proy)) :
-                                    ?>
-                                        <tr>
-                                            <td><?= $trabajador['trabajador'] ?></td>
-                                            <td><a href="../controllers/deleteTrabProy.php?idP=<?= $_GET['id'].'&idT='.$trabajador['id']?>" class="btn btn-danger btn-sm"><span class="fas fa-minus"></span></a></td>
-                                        </tr>
-                                    <?php endwhile; ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                <div class="box overflow-auto">
+                                    <table class="table table-hover table-borderless">
+                                        <tbody>
+                                        <?php 
+                                            $trabajadores_proy = select_ProyTrab($conn, $_GET['id']);
+                                            while($trabajador = mysqli_fetch_assoc($trabajadores_proy)) :
+                                        ?>
+                                            <tr>
+                                                <td><?= $trabajador['trabajador'] ?></td>
+                                                <?php if($_SESSION['user']['rol'] == 'gestor') : ?>
+                                                <td><a href="../controllers/deleteTrabProy.php?idP=<?= $_GET['id'].'&idT='.$trabajador['id']?>" class="btn btn-danger btn-sm"><span class="fas fa-minus"></span></a></td>
+                                                <?php endif; ?>
+                                            </tr>
+                                        <?php endwhile; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -80,6 +82,7 @@
     <p>Descripción: <?= $proyecto['descripcion']?> </p>
     <hr>
     <div class="row">
+        <?php if($_SESSION['user']['rol'] == 'gestor') : ?>
         <div class="col">
             <div class="card">
                 <div class="card-header">
@@ -116,33 +119,74 @@
                 </div>
             </div>
         </div>
+        <?php elseif($_SESSION['user']['rol'] == 'diseñador') : ?>
         <div class="col">
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">Enviar propuestas</h5>
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form action="../controllers/propuesta.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="exampleFormControlFile1">Propuesta</label>
-                        <input type="file" class="" id="exampleFormControlFile1">
+                        <input type="hidden" name="id_proyecto" value="<?= $_GET['id'] ?>">
+                        <input type="hidden" name="id_trabajador" value="<?= $_SESSION['user']['id'] ?>">
+                        <label for="propuesta">Propuesta</label>
+                        <input type="file" name="propuesta">
                     </div>
                     <button class="btn btn-dark">Subir</button>
                     </form>
                 </div>
             </div>
         </div>
+        <?php endif; ?>
+        <?php if($_SESSION['user']['rol'] != 'administrador' && $_SESSION['user']['rol'] != 'secretaria'): ?>
         <div class="col">
-        <div class="card">
+            <div class="card">
                 <div class="card-header">
-                <h5 class="card-title">Propuestas</h5>
+                    <h5 class="card-title">Propuestas</h5>
                 </div>
                 <div class="card-body">
-                    
+                    <div class="overflow-auto" id="propuesta">
+                        <table class="table table-hover table-sm">
+                            <tbody>
+                                <?php
+                                $propuestas = select_Propuestas($conn, $_GET['id']);
+                                while ($propuesta = mysqli_fetch_assoc($propuestas)) :
+                                    if ($propuesta['trabajador'] != $trab) :
+                                ?>
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th><?= $propuesta['trabajador'] ?></th>
+                                    </tr> 
+                                </thead>
+                                <?php endif; $trab = $propuesta['trabajador']; ?>
+                                <tr>
+                                    <td><a href="../archives/<?= $propuesta['propuesta'] ?>"><?= $propuesta['propuesta'] ?></a></td>
+                                    <?php if($_SESSION['user']['rol'] == 'gestor') : ?>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-success"><span class="fas fa-check"></span></button>
+                                            <button type="button" class="btn btn-danger"><span class="fas fa-times"></span></button>
+                                        </div>
+                                    </td>
+                                    <?php endif; ?>
+                                </tr>
+                                <?php 
+                                endwhile; 
+                                ?>    
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+        <?php endif; ?>
     </div>
+    <?php if($_SESSION['user']['rol'] == 'gestor'): ?>
+    <div class="row justify-content-center">
+        <button class="btn btn-danger mt-5">Finalizar</button>
+    </div>
+    <?php endif; ?>
 </div>
 <?= deleteAlert(); ?>
 
