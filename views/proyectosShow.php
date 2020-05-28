@@ -147,29 +147,39 @@
                 </div>
                 <div class="card-body">
                     <div class="overflow-auto" id="propuesta">
-                        <table class="table table-hover table-sm">
+                        <table class="table table-hover">
                             <tbody>
                                 <?php
-                                $propuestas = select_Propuestas($conn, $_GET['id']);
+                                $propuestas = select_Propuestas($conn, $_GET['id'], $proyecto['estatus']);
                                 while ($propuesta = mysqli_fetch_assoc($propuestas)) :
-                                    if ($propuesta['trabajador'] != $trab) :
+                                    if($_SESSION['user']['rol'] == 'gestor') :
+                                        if ($propuesta['trabajador'] != $trab) :
                                 ?>
-                                <thead class="thead-dark">
+                                <thead class="thead">
                                     <tr>
                                         <th><?= $propuesta['trabajador'] ?></th>
                                     </tr> 
                                 </thead>
-                                <?php endif; $trab = $propuesta['trabajador']; ?>
+                                <?php   
+                                        endif; 
+                                        $trab = $propuesta['trabajador']; 
+                                    endif;
+                                ?>
                                 <tr>
-                                    <td><a href="../archives/<?= $propuesta['propuesta'] ?>"><?= $propuesta['propuesta'] ?></a></td>
-                                    <?php if($_SESSION['user']['rol'] == 'gestor') : ?>
+                                    <td class="<?= ($propuesta['estatus'] == 'Aprobado') ? 'table-success': ''?>"><a href="../archives/<?= $propuesta['propuesta'] ?>" class="propuestas" target="_blank"><?= $propuesta['propuesta'] ?></a></td>
+                                    <?php 
+                                    if($_SESSION['user']['rol'] == 'gestor') :
+                                        if($propuesta['estatus'] != 'Aprobado') : 
+                                    ?>
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-success"><span class="fas fa-check"></span></button>
-                                            <button type="button" class="btn btn-danger"><span class="fas fa-times"></span></button>
+                                            <a href="../controllers/estatusPropuesta.php?id_prop=<?= $propuesta['id'] ?>&id_pro=<?= $proyecto['id'] ?>&estatus=1" class="btn btn-success"><span class="fas fa-check"></span></a>
                                         </div>
                                     </td>
-                                    <?php endif; ?>
+                                    <?php 
+                                        endif;
+                                    endif; 
+                                    ?>
                                 </tr>
                                 <?php 
                                 endwhile; 

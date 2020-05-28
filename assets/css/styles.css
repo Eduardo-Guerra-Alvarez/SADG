@@ -87,6 +87,16 @@
     height: 150px;
   }
 
+  .propuestas {
+    color: #000000;
+    text-decoration: none;
+  }
+
+  .propuestas:hover{
+    color: #003333;
+    text-decoration: none;
+  }
+
   footer {
     margin-left: 30%;
     bottom: 0;
@@ -157,7 +167,7 @@
 
 
   .card {
-    box-shadow: 10px 10px 20px  rgba(0,0,0,0.4), inset 1px 1px 20px rgba(0,0,0,0.2);
+    box-shadow: 10px 10px 10px  rgba(0,0,0,0.4), inset 1px 1px 20px rgba(0,0,0,0.2);
   }
 
   
