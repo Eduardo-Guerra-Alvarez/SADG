@@ -1,4 +1,3 @@
-<?php require_once '../controllers/conexion.php' ?>
 <?php require_once 'helpers.php' ?>
 <!--Cabecera con todos los enlaces-->
 <!DOCTYPE html>

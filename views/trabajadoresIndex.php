@@ -1,5 +1,5 @@
+<?php require_once '../controllers/conexion.php' ?>
 <?php
-    session_start();
     if ($_SESSION['user']['rol'] != 'administrador') {
         header('Location: index.php');
     }

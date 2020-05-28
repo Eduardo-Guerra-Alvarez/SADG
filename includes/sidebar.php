@@ -16,7 +16,7 @@
     <?php elseif($_SESSION['user']['rol'] == 'secretaria') :?>
         <a href="./clientesIndex.php">Clientes</a>
         <a href="./proyectosIndex.php">Proyectos</a>
-    <? endif; ?>
+    <?php endif; ?>
 
         <a href="../controllers/logout.php"><span class="fas fa-sign-out-alt"></span> Salir</a>
     </div>

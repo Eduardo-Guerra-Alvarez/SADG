@@ -64,7 +64,7 @@
                                         ?>
                                             <tr>
                                                 <td><?= $trabajador['trabajador'] ?></td>
-                                                <?php if($_SESSION['user']['rol'] == 'gestor') : ?>
+                                                <?php if($_SESSION['user']['rol'] == 'gestor' && $proyecto['estatus'] != 'Finalizado') : ?>
                                                 <td><a href="../controllers/deleteTrabProy.php?idP=<?= $_GET['id'].'&idT='.$trabajador['id']?>" class="btn btn-danger btn-sm"><span class="fas fa-minus"></span></a></td>
                                                 <?php endif; ?>
                                             </tr>
@@ -82,7 +82,7 @@
     <p>Descripción: <?= $proyecto['descripcion']?> </p>
     <hr>
     <div class="row">
-        <?php if($_SESSION['user']['rol'] == 'gestor') : ?>
+        <?php if($_SESSION['user']['rol'] == 'gestor' && $proyecto['estatus'] != 'Finalizado') : ?>
         <div class="col">
             <div class="card">
                 <div class="card-header">
@@ -119,7 +119,7 @@
                 </div>
             </div>
         </div>
-        <?php elseif($_SESSION['user']['rol'] == 'diseñador') : ?>
+        <?php elseif($_SESSION['user']['rol'] == 'diseñador' && $proyecto['estatus'] != 'Finalizado') : ?>
         <div class="col">
             <div class="card">
                 <div class="card-header">
@@ -168,7 +168,7 @@
                                 <tr>
                                     <td class="<?= ($propuesta['estatus'] == 'Aprobado') ? 'table-success': ''?>"><a href="../archives/<?= $propuesta['propuesta'] ?>" class="propuestas" target="_blank"><?= $propuesta['propuesta'] ?></a></td>
                                     <?php 
-                                    if($_SESSION['user']['rol'] == 'gestor') :
+                                    if($_SESSION['user']['rol'] == 'gestor' && $proyecto['estatus'] != 'Finalizado') :
                                         if($propuesta['estatus'] != 'Aprobado') : 
                                     ?>
                                     <td>
@@ -194,7 +194,7 @@
     </div>
     <?php if($_SESSION['user']['rol'] == 'gestor'): ?>
     <div class="row justify-content-center">
-        <button class="btn btn-danger mt-5">Finalizar</button>
+        <a href="../controllers/finalizar.php?id=<?= $proyecto['id'] ?>" class="btn btn-danger mt-5">Finalizar</a>
     </div>
     <?php endif; ?>
 </div>

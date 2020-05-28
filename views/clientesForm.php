@@ -18,11 +18,11 @@
         <form action="../controllers/addCliente.php" method="POST">
                 <div class="form-groupl">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" class="form-control" autofocus required>
+                    <input type="text" name="nombre" class="form-control" autofocus required pattern="([A-Za-z]+\s?){1,5}">
                 </div>
                 <div class="form-groupl">
                     <label for="apellidos">Apellidos</label>
-                    <input type="text" name="apellidos" class="form-control" required>
+                    <input type="text" name="apellidos" class="form-control" required pattern="([A-Za-z]+\s?){1,5}">
                 </div>
                 <div class="form-groupl">
                     <label for="direccion">Direccion</label>

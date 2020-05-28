@@ -19,11 +19,11 @@
                 <input type="hidden" name="id" value="<?= $trabajador['id'] ?>">
                 <div class="form-groupl">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" class="form-control" required value="<?= $trabajador['nombre'] ?>">
+                    <input type="text" name="nombre" class="form-control" required value="<?= $trabajador['nombre'] ?>" pattern="([A-Za-z]+\s?){1,5}">
                 </div>
                 <div class="form-groupl">
                     <label for="apellidos">Apellidos</label>
-                    <input type="text" name="apellidos" class="form-control" required value="<?= $trabajador['apellidos'] ?>">
+                    <input type="text" name="apellidos" class="form-control" required value="<?= $trabajador['apellidos'] ?>" pattern="([A-Za-z]+\s?){1,5}">
                 </div>
                 <div class="form-groupl">
                     <label for="direccion">Direccion</label>
@@ -36,6 +36,7 @@
                 <div class="form-groupl">
                     <label for="correo">Correo</label>
                     <input type="email" name="correo" class="form-control" required value="<?= $trabajador['correo'] ?>">
+                    <p class="text-danger"><?= $_SESSION['errores']['correo'] ?></p>
                 </div>
                 <div class="form-groupl">
                     <label for="password">Contraseña</label>

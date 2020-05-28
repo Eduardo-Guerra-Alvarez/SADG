@@ -28,6 +28,12 @@
         if (empty($correo) || !filter_var($correo, FILTER_VALIDATE_EMAIL)) {
             $errores['correo'] = 'Correo invalido';
         }
+        $sql = "SELECT * FROM trabajadores WHERE correo = '$correo'";
+        $existe = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($existe) >= 1) {
+            $errores['correo'] = 'El correo ya existe';
+        }
+
         if (empty($password)) {
             $errores['password'] = 'Contraseña invalida';
         }
@@ -50,7 +56,9 @@
                 header('Location: ../views/trabajadoresIndex.php');
             }
         } else {
+            $_SESSION['error'] = 'Fallo al guardar trabajador';
             $_SESSION['errores'] = $errores;
+            header('Location: ../views/trabajadoresIndex.php');
         }
     }
 ?>
